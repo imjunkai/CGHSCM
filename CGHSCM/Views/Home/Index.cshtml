@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "Index";
+    ViewBag.AppName = "myApp";
+}
+
+@section Scripts {
+    <script src="~/scripts/App.js"></script>
+}
+
+
+<div ng-controller="MainCtrl" ng-cloak layout="column">
+    <div class="nav-fit">
+        <md-toolbar>
+            <div class="md-toolbar-tools text-center">
+                <h2 class="text-center">
+                    All Requests
+                </h2>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding flex ng-show="!results_available">
+            <h3 class="text-center">
+                There aren't any requests at the moment..
+            </h3>
+            <div class="container text-center" ng-show="!results_available">
+                {{message}}
+            </div>
+        </md-content>
+
+        <md-content layout-padding flex ng-show="results_available">
+            <fieldset>
+                <md-list>
+                    <md-list-item ng-repeat="item in items" layout="row">
+                        <div layout="row">
+                            <div class="md-list-item-text" layout="column" flex="80">
+                                <address>
+                                    <h3>{{item.Description}} <small>[Material ID: {{item.MaterialID}}]</small></h3>
+                                    <h4><b>Top up Qty:</b> {{item.TopUp}} {{item.UOM}}</h4>
+                                    <h4><b>Location:</b> {{item.CostCenterName}} <small>ID: {{item.CostCenterID}}</small></h4><br>
+                                    <b>Requested Date Time:</b> {{convert(item.TimeRequested)}}<br>
+                                </address>
+                            </div>                           
+                            <div flex="20">
+                                <md-checkbox class="md-secondary" ng-model="payload[$index].IsDone"></md-checkbox>
+                            </div>
+                            <md-divider inset></md-divider>
+                    </md-list-item>
+                </md-list>
+            </fieldset>
+        </md-content>
+        <div class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container text-center" ng-show="!results_available">
+                <a class="btn btn-success btn-lg" aria-label="Excel Sheet" href="@Href("~/Home/Excel/recent")">
+                    Excel Sheet
+                </a>
+                <a class="btn btn-danger btn-lg" aria-label="Past Data" href="@Href("~/Home/Excel/get_all")">
+                    All Past Data
+                </a>
+            </div>
+            <div class="container text-center" ng-show="results_available">
+                <button class="btn btn-warning btn-lg" ng-click="submit()">Submit</button>
+                <a class="btn btn-success btn-lg" aria-label="Excel Sheet" href="@Href("~/Home/Excel/recent")">
+                    Excel Sheet
+                </a>
+                <a class="btn btn-danger btn-lg" aria-label="Past Data" href="@Href("~/Home/Excel/get_all")">
+                    All Past Data
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Session["Download"] != null)
+{
+    <script type="text/javascript">
+        @if ((bool)Session["Download"])
+        {
+            @: alert("True");
+        } else
+        {            
+            @: alert("@Session["args"]");
+        }        
+    </script>
+    Session["Download"] = null;
+}

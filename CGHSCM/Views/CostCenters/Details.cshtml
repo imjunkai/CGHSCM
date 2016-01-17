@@ -1,0 +1,26 @@
+﻿@model CGHSCM.Models.CostCenter
+
+@{
+    ViewBag.Title = "Cost Center - Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CostCenter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CostCenterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostCenterName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CostCenterID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

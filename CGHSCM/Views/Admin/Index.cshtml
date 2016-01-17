@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Admin";    
+}
+
+<h3>Admin Control Page</h3>
+
+
+@if (Session["Upload"] != null)
+{
+    <div class="panel-primary">@Session["Reason"]</div>
+    Session["Upload"] = null;
+}
+
+<form method="post" action="~/admin/uploadfiles" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Database Alteration</legend>
+        <div>
+            <select name="selection">
+                <option value="costcenters">Cost Center</option>
+                <option value="materials">Materials</option>
+                <option value="outstandings">Outstanding</option>
+            </select>
+        </div>
+        <br />
+        <div>
+            <label for="inFile">Upload File</label>
+            <input type="file" name="inFile" />
+        </div>
+        <br />
+        <div>
+            <button type="submit" value="Submit" class="btn-success">Submit</button>
+        </div>
+    </fieldset>
+</form>
+<div>
+    <h3>Usage Info</h3>
+    <p>Choose file to upload. You can only modify the Cost Center and Material Master Information</p>
+    <p></p>
+</div>
+
+<div>
+    @if (ViewBag.data != null)
+    {
+        foreach (string d in ViewBag.data)
+        {
+            <p>@d</p>
+        }
+    }
+    
+</div>

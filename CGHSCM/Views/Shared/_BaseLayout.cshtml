@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SCM Application</title>
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/angular.min.js"></script>
+    <script src="~/scripts/angular-animate.min.js"></script>
+    <script src="~/scripts/angular-aria.min.js"></script>
+    <script src="~/scripts/angular-cookies.js"></script>
+    <script src="~/scripts/angular-material.min.js"></script>
+    <script src="~/scripts/angular-resource.js"></script>
+    <script src="~/scripts/angular-route.js"></script>    
+    @RenderSection("Scripts", false)
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/angular-material.min.css" rel="stylesheet" />
+    @RenderSection("Styles", false)
+
+</head>
+<body>
+    @RenderBody()
+
+</body>
+</html>
