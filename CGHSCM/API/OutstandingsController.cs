@@ -61,7 +61,10 @@ namespace CGHSCM.API
         public async Task<IHttpActionResult> DeleteOutstanding(Outstanding outstanding)
         {            
             db.Outstandings.Remove(outstanding);
-            await db.SaveChangesAsync();
+            await Task.Factory.StartNew(() =>
+            {
+                new Processes().DeleteOutstanding(outstanding);
+            });
             return Json("'Info': 'Deleted Item'");
         }
     }

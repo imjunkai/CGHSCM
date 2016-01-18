@@ -219,5 +219,16 @@ namespace CGHSCM.DAL
                 db.SaveChanges();
             }            
         }
+
+        public void DeleteOutstanding(Outstanding o)
+        {
+            var result = db.Outstandings.SingleOrDefault(a => a.ID == o.ID);
+            if (result == null)
+            {
+                return;
+            }
+            db.Outstandings.Remove(result);
+            db.SaveChanges();
+        }
     }
 }
