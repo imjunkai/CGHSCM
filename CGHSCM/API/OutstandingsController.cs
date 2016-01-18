@@ -58,5 +58,11 @@ namespace CGHSCM.API
             return Json("'info': 'sent update request'");
 
         }       
+        public async Task<IHttpActionResult> DeleteOutstanding(Outstanding outstanding)
+        {            
+            db.Outstandings.Remove(outstanding);
+            await db.SaveChangesAsync();
+            return Json("'Info': 'Deleted Item'");
+        }
     }
 }
