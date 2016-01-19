@@ -1,2 +1,5 @@
 App_Data/
 .vs/
+*.mdf
+CGHSCM/App_Data/LogisticDatabase_log.ldf
+.vs/CGHSCM/v14/.suo

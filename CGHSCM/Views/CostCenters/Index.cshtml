@@ -9,16 +9,31 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search Box: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" class="btn-success" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CostCenterName)
+            @Html.ActionLink("Cost Center ID", "Index", new { id = ViewBag.IDSortParam })            
+        </th>
+        <th>
+            @Html.ActionLink("Cost Center Name", "Index", new { id = ViewBag.NameSortParam })            
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostCenterID)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.CostCenterName)
         </td>
