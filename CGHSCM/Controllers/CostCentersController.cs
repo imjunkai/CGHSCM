@@ -22,7 +22,7 @@ namespace CGHSCM.Controllers
         //    return View(await db.CostCenters.ToListAsync());
         //}
         
-        public async Task<ActionResult> Index(string id)
+        public async Task<ActionResult> Index(string id, string searchString)
         {
             //id here refers to sort order
             ViewBag.NameSortParam = String.IsNullOrEmpty(id) ? "name_desc" : "";
@@ -30,6 +30,12 @@ namespace CGHSCM.Controllers
 
             var centers = from c in db.CostCenters
                           select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                centers = centers.Where(c => c.CostCenterName.Contains(searchString)
+                                        || c.CostCenterID.Contains(searchString));
+            }
 
             switch (id)
             {
