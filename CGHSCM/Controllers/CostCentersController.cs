@@ -16,12 +16,7 @@ namespace CGHSCM.Controllers
     {
         private LogisticContext db = new LogisticContext();
 
-        // GET: CostCenters
-        //public async Task<ActionResult> Index()
-        //{
-        //    return View(await db.CostCenters.ToListAsync());
-        //}
-        
+        // GET: CostCenters               
         public async Task<ActionResult> Index(string id, string searchString)
         {
             //id here refers to sort order
