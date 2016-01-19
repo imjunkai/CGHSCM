@@ -17,9 +17,38 @@ namespace CGHSCM.Controllers
         private LogisticContext db = new LogisticContext();
 
         // GET: CostCenters
-        public async Task<ActionResult> Index()
+        //public async Task<ActionResult> Index()
+        //{
+        //    return View(await db.CostCenters.ToListAsync());
+        //}
+        
+        public async Task<ActionResult> Index(string id)
         {
-            return View(await db.CostCenters.ToListAsync());
+            //id here refers to sort order
+            ViewBag.NameSortParam = String.IsNullOrEmpty(id) ? "name_desc" : "";
+            ViewBag.IDSortParam = id == "id" ? "id_desc" : "id";
+
+            var centers = from c in db.CostCenters
+                          select c;
+
+            switch (id)
+            {
+                case "name_desc":
+                    centers = centers.OrderByDescending(x => x.CostCenterName);
+                    break;
+                case "id":
+                    centers = centers.OrderBy(x => x.CostCenterID);
+                    break;
+                case "id_desc":
+                    centers = centers.OrderByDescending(x => x.CostCenterID);
+                    break;
+                default:
+                    centers = centers.OrderBy(x => x.CostCenterName);
+                    break;
+            }
+
+            return View(await centers.ToListAsync());
+
         }
 
         // GET: CostCenters/Details/5

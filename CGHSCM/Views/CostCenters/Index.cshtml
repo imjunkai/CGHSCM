@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CostCenterID)
+            @Html.ActionLink("Cost Center ID", "Index", new { id = ViewBag.IDSortParam })            
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CostCenterName)
+            @Html.ActionLink("Cost Center Name", "Index", new { id = ViewBag.NameSortParam })            
         </th>
         <th></th>
     </tr>
