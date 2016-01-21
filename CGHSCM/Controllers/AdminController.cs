@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+//blablabla
 namespace CGHSCM.Controllers
 {
     public class AdminController : Controller
